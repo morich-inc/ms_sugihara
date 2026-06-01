@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杉原正隆 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>杉原正隆 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社ソーシャルインテリア（旧：subsclife/サブスクライフ）</a>
+  <a href="#k2">2. W2株式会社（旧:w2ソリューション株式会社）</a>
+  <a href="#k3">3. 株式会社いつも</a>
+  <a href="#k4">4. 株式会社Hacobu</a>
+  <a href="#k5">5. ハコベル株式会社</a>
+  <a href="#k6">6. 株式会社ACROVE</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">次世代役員候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社ソーシャルインテリア（旧：subsclife/サブスクライフ）</div>
+  <div class="co-url"><a href="https://corp.socialinterior.com/" target="_blank">https://corp.socialinterior.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒107-0062 東京都港区南青山2-5-17 POLA青山ビルディング 9F</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>IPO状況</th><td>N-1,N-2</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備フェーズ：N-1期</li><li>社長リレーション</li><li>過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「インテリアの世界を変える。インテリアで世界を変える。」をミッションに掲げ、「オンライン販売事業」「オフィス構築支援事業」「INTERIOR BASE事業」の3事業を展開。2016年「家具業界の革命」を志し株式会社subsclifeとして創業し、2018年3月に日本で初めて家具のサブスクリプションサービスをローンチ。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p><strong>株式会社ソーシャルインテリア</strong><br>2016年「家具業界の革命」を志し株式会社subsclifeとして創業。2018年3月に日本で初めて家具のサブスクリプションサービスをローンチ。</p><p>「インテリアの世界を変える。インテリアで世界を変える。」をミッションに掲げ、「オンライン販売事業」「オフィス構築支援事業」「INTERIOR BASE事業」の3事業を展開しています。"家具のサブスク"という単一モデルから脱却し、現在は INTERIOR BASE事業を成長エンジンとして、事業ポートフォリオの進化を進めています。アナログ業務が多く残るインテリア業界において、生産性向上とイノベーションの実現を加速させ、業界全体の構造変革と持続的な成長に寄与するサービス展開を推進していきます。</p><p>現在は、近年のIPOを見据え、予実達成を前提にいつでも上場可能な体制を整えた"最終準備フェーズ"に入っています。</p><p><strong>▼事業紹介</strong><br>・オンライン販売事業<br>家具・家電のセレクト型オンラインストア「サブスクライフ」(2018年3月開始)は、新品・ヴィンテージ品・中古品・アウトレット品からお気に入りの商品を探せるサービスです。支払い方法をサブスクにすることで、月額で必要な時に必要な分だけ、必要なモノを所有せずに利用することが可能です。</p><p>・オフィス構築支援事業<br>法人向けの「ソーシャルインテリア オフィス構築支援」は、家具のサブスクリプションサービスに留まらず、オフィス移転から空間デザイン、家具選定までワンストップでサポートするサービスです。</p><p>・INTERIOR BASE事業<br>設計会社・販売店・メーカー向けの家具什器受発注プラットフォーム「INTERIOR BASE」は、国内外のオフィス什器から海外のハイエンド家具まで、国内最大級の商品情報データベースを基に、スペックイン業務を大幅に効率化するサービスです。</p><p><strong>▼受賞歴</strong><br>・東急アクセラレートプログラム2019Demo Day 東急賞受賞(2020年3月、東急グループ)<br>・Next-generation Commerce Award 2020 特別賞受賞(2020年9月、公益社団法人日本通信販売協会)<br>・日本サブスクリプションビジネス大賞2020 ブロンズ賞受賞(2020年12月、一般社団法人日本サブスクリプションビジネス振興会)<br>・すごいベンチャー100選出(2021年8月、東洋経済)<br>・日本ネット経済新聞賞 SDGs部門 特別賞(2022年6月、日本流通産業新聞社)<br>・Mizuho Innovation Award 2024.3Q(2024年10月、みずほ銀行)</p><p><strong>代表取締役について</strong><br>町野代表は外資系大手コンピュータ会社（HP)、株式会社マクロミルを経て、2012年に株式会社グライダーアソシエイツを設立。同社がリリースしたオンラインキュレーションマガジンは、3年で400万ユーザー獲得というブレイクを果たし2015年KAMARQに参画。翌年子会社のsubsclifeを立ち上げられました。</p><p>2018年に、家具メーカーで日本初となる家具のサブスクリプションサービスを開始した同社。使い続けても商品価格を超えない仕組みの「サブスクライフ 」や、家具が循環する度にいいものをつくったメーカーに収益の一部を分配する「サブスクライフ オフプライス」など、持続可能な社会に還元する事業を一早く展開されています。</p><p>取り扱う家具は600ブランド 12万種以上、人気家電ブランド「バルミューダ」や、オフィス家具大手のコクヨ製品の取り扱いも開始。お客様用の家具コーディネートも、無料で提案しています。さらに、利用期間終了後は、返却・購入・継続の3パターンから選択が可能。｢レンタル｣｢リース｣｢購入｣のいいとこどりができる、画期的なサービスです。</p><p>「家の中を、世界一、豊かな国へ。」というビジョンのもと、様々な業界経験・経歴を持つメンバーが集結。「家具で常識を変える」を共通項に、それぞれが自分の強みを活かし、現場では日々新しいアイディアが生まれています。</p><p>昨今リモートワークが増えオフィスのあり方が見直される中、同社サービスは一層注目され、2020年には約30億円の資金調達を実施、2021年の1月には新サービスを提供開始、さらに2022年3月には約22億の資金調達を実施するなど、急速に成長を遂げています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 次世代役員候補</div>
+          <div class="job-preview">近年のIPO見据え、最終準備フェーズの企業での次世代役員候補ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>[confidential]次世代役員候補</strong></p><p><strong>応募資格：</strong></p><ul><li><span class='tag tag-must'>MUST</span> 法人営業が関係する事業にコンサルかマネジメントしてきた経験３年以上必須</li><li><span class='tag tag-must'>MUST</span> コンサル会社のみの経験の場合、人に興味がある、部下を５人以上マネジメントした経験が必須</li><li><span class='tag tag-must'>MUST</span> KPI，経営分析から施策に落として数字と目標にコミットして徹底的にがんばってみたい方</li><li><span class='tag tag-want'>WANT</span> ToC事業経験はあればあったほうがいいが、なくてもOK</li><li><span class='tag tag-must'>MUST</span> 当社の法人事業は難易度が高く、実行しているマーケティングも最新のため、頭脳と新しいことを生み出せる頭の柔らかさが必須。</li><li><span class='tag tag-must'>MUST</span> 次世代の若い力と新しいリーダーシップを発揮できる方（独裁型トップダウンでなく、共創マネジメントができる。または興味がある方）</li><li><span class='tag tag-must'>MUST</span> 上場前か上場スタートアップの役員や社長を目指したい方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.socialinterior.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://socialinterior.com/corporate/" target="_blank">🔗 事業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">打診</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">W2株式会社（旧:w2ソリューション株式会社）</div>
+  <div class="co-url"><a href="https://www.w2solution.co.jp/corporate/company_info/" target="_blank">https://www.w2solution.co.jp/corporate/company_info/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒104-0045 東京都中央区築地1丁目13-1　銀座松竹スクエア5階</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>IPO状況</th><td>N-1</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備中</li><li>役員リレーション</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2005年の設立以来、独自のECプラットフォームを開発し、EC業界の成長を支える先進的なサービスを提供。2006年には業界初となるSaaS型ECプラットフォームをリリースし、以来、中大規模事業者向けのECサイト構築・運用支援に特化。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p><strong>Ｗ２株式会社（旧：w2ソリューション株式会社）</strong><br>2005年の設立以来、独自のECプラットフォームを開発し、EC業界の成長を支える先進的なサービスを提供してきました。2006年には業界初となるSaaS型ECプラットフォームをリリースし、以来、中大規模事業者向けのECサイト構築・運用支援に特化。OMO・オムニチャネル対応の<strong>「W2 Unified」、D2Cリピート通販向けの「W2 Repeat」</strong>といった強力なプラットフォームを展開しています。</p><p>最大の特徴は、社員の70%以上がエンジニアで、全システムを100%自社開発している点。「営業→導入→カスタマーサクセス」までの全工程を内製化し、高品質なサービスと圧倒的な顧客対応力を実現しています。さらに、グループ企業と連携し、IT・DX・マーケティングコンサルティング、デザイン制作、EC運用代行など、EC事業をトータルにサポートしています。</p><p>実績も豊富で、アサヒビール株式会社のD2C事業では、数ヶ月でローンチし、2年で累計売上30億円、LINE友だち数200万人超を達成するなど、数々の成功事例を誇ります。</p><p><strong>・確かな実績と業界からの評価</strong><br>15年連続「ベストベンチャー100」選出<br>Microsoft Gold Partner認定<br>Asia Pacific Grow Fastest 1,000選出</p><p><strong>・代表取締役 ＣＥＯ　 山田 大樹氏</strong><br>1978年生まれ。1997年上智大学入学と同時に起業、フィアコミュニケーションズを設立。海外、国内に複数の会社・事業を立ち上げ経営に携わるシリアルアントレプレナー。2005年、5社目となる「w2ソリューション株式会社（現：W2株式会社）」を設立。創業10年で250社以上の有名ECサイトに導入されるなど、業界トップクラスの成長を実現しました。</p><p>CEO山田様は現在46歳、小学生の頃からプログラミングをおこない企業への販売もしており、10代で起業し現職は5社目の起業という、技術者バックグラウンドのシリアルアントレプレナーです。VCなどは入れず自己資本のみで運営されており、20代の時すでに港区の長者番付にランクインされた実績がございます。IPOできる体制は既に整えており、ブランディングやグローバル展開に向けた手段の一つとしてIPOを検討されています。</p><p>事業は大きく2つ、プラットフォーム事業では定額＋売上に応じた従量課金で5年間程度継続されることが多く、インテグレーション事業は案件規模3,000万円〜3億円程度の企画提案をされています。EC市場は国内でも若者中心に拡大しつつありますが、アメリカや中国を含むグローバル全体が19.3％（2022年）に対し、日本は9.13％とまだまだ成長余地が大きいのが実態です。今後15年間で拡大ポテンシャルがある市場はECと言われており、同社が網羅するEC・CX・CRM領域は将来性・収益性ともに高い現状がございます。顧客はアパレル・ヘルスケア・食品・美容など様々な小売業界に対応されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 打診</div>
+          <div class="job-preview">IPO準備中、技術者出身シリアルアントレプレナーCEOのもとでの打診案件</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>打診</strong></p><p>詳細については面談にてお話しさせていただきます。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.w2solution.co.jp/corporate/company_info/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">事業開発企画責任者</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">株式会社いつも</div>
+  <div class="co-url"><a href="https://itsumo365.co.jp/" target="_blank">https://itsumo365.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒100-0006 東京都千代田区有楽町1-13-2 第一生命日比谷ファースト21階</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>役員リレーション</li><li>過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「日本の未来をECでつくる」をミッションに掲げ、日本の中小から大手に至るまで延べ13,000件以上の幅広いメーカーへのEC事業の総合支援を行う会社。メーカーのECパートナーとして、EC戦略の立案、サイト構築、販売戦略、マーケティング、物流、システムなどの包括的なサポートを提供。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p><strong>株式会社いつも</strong><br>「日本の未来をECでつくる」をミッションに掲げ、日本の中小から大手に至るまで延べ13,000件以上の幅広いメーカーへのEC事業の総合支援を行う会社です。メーカーのECパートナーとして、EC戦略の立案、サイト構築、販売戦略、マーケティング、物流、システムなどの包括的なサポートを提供することで、クライアントのEC事業の成功を支援しています。</p><p>また、「人」と「テクノロジー」を組み合わせ、ブランドECサイト、Amazon、楽天市場、Yahoo!ショッピング、海外のECプラットフォームでのマルチチャネル展開を支援しています。卓越した「Eコマースで売るチカラ」で人を活かし、日本ブランドを世界に届けるお手伝いをしています。</p><p>2016年にEC事業代行へと事業を拡張し、急成長。2020年に東証マザーズ（現グロース市場）へ上場し、2021年からはD2C・ECブランドのM&A・出資を本格化させてきました。積極的なM&Aと採用を推進する拡大路線を進めていましたが、現在は事業ポートフォリオの整理を進め、売却も含めた見直しを行いながら、持続的な成長戦略の構築に取り組んでいます。</p><p>また、組織再編の中で、Amazon・電通・楽天出身のメンバーが加わり、経営の立て直しに向けた体制を強化。新たな成長フェーズを支える優秀な人材の採用にも注力しています。変化の局面にある今、新たな企業文化を築きながら、より強固な組織を目指しているフェーズです。</p><p><strong>・代表取締役社長　坂本 守氏</strong><br>1970年生まれ。滋賀県出身。 1999年に株式会社船井総合研究所（現株式会社船井総研HD）に中途入社。2007年に現取締役副社長の望月氏と共に、中小企業の成長を支援する会社を作りたいと思い同社を設立し、代表取締役に就任。</p><p>Amazon、楽天、PayPayモール、自社ブランドECなどの、サイト構築・UXデザイン・広告運用・プロモーション・物流・越境ECまでをトータル支援しています。30代前半が平均年齢ですが、現在は30代後半～40代のミドルマネジメントを置くなど組織再編を行っており、経営に近い立ち位置で仕事ができることが魅力的なポイントです。</p><p>時短・在宅勤務ができる【働くパパママ応援制度】や【産休育休制度】という制度があったり残業については厳しく管理されているので、メリハリをつけてワークライフバランス良く働ける環境です！</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 事業開発企画責任者/BizDev</div>
+          <div class="job-preview">ライブコマース・ソーシャルコマース事業の戦略立案・推進を担う事業責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【事業開発企画責任者/BizDev】国内屈指のD2Cのリーディングカンパニー/日経が選ぶプラチナ企業100選選出</strong></p><p><strong>◆当社について</strong><br>当社は、「日本の未来をECでつくる」というミッションのもと、ものづくりからマーケティング・物流までを一気通貫でEC事業を全支援しています。E-commerce領域において、これまで13,000件の実績があり、<br>・クライアントのマーケティング・EC事業の総合支援（法人向け）<br>・プライベートブランドの販売（D2C）（消費者向け）<br>等B2B・B2C包含した相互シナジーでグローバルでに展開しております。</p><p>「人」と「テクノロジー」を組み合わせ、卓越した「Eコマースで売るチカラ」でブランドを国内外に届けるお手伝いをします。また、日経が選ぶ「プラチナ企業」100選に選出され、人的資本投資も注力しています。その取り組みが評価され、「人的資本経営品質2024［シルバー］」および「キャリアオーナーシップ経営AWARD 2025　優秀賞」の両分野で受賞を果たしました。今後も「人」を起点とした持続可能な成長を目指して参ります。</p><p>今回、日本最大級のライブコマースアプリを弊社がM&Aを行い、ECを「売上をつくる本質的なマーケティング」と位置づけ、企業の事業成長を包括的にサポートし､アプリ運営に加えて､今後さらなるライブコマース・ソーシャルコマースの市場の拡大に向けてコンフィデンシャルな新規事業の立ち上げを推進しています｡</p><p>本ポジションは､ライブコマースおよび関連領域における事業開発・営業企画担当し、ライブコマースのプラットフォームに加えて様々なその周辺領域の事業を立ち上げスケールさせる重要な役割を担っていただくポジションです。将来的にはHead of Business Development/事業責任者のキャリアパスがあり、ライブコマース・ソーシャルコマース事業の戦略策定・推進だけでなく、事業スケールのためのアライアンス戦略、組織構築にも深く関与いただきます。</p><p><strong>◆具体的な業務内容</strong></p><p><strong>①事業戦略立案と実行</strong><br>ライブコマースプラットフォーム及びソーシャルコマースの市場動向、競合分析、顧客ニーズの把握をもとに、具体的な事業戦略・戦術を策定いただきます。定量的なデータ分析を活用し、PDCAサイクルを回すことで戦略の実行状況を常にモニタリング、必要に応じて戦略の修正を実施いただきます。</p><p><strong>②アライアンス戦略の構築と交渉</strong><br>国内外の大手SNSプラットフォームや主要ECプラットフォームとの提携交渉を推進いただきます。各プラットフォームとの連携により、ライブ配信コンテンツやキャンペーン企画、共同プロモーションの実施を通じ、集客および売上拡大を図ります。</p><p><strong>③マーケティングおよび営業企画の推進</strong><br>ライブコマース事業におけるマーケティング施策（オンライン広告、SNSマーケティング、コンテンツマーケティング等）の企画・実行をいただきます。</p><p><strong>応募資格：</strong></p><p><strong>◆必須スキル</strong><br>※いずれも目安3年とさせていただきます。</p><ul><li><span class='tag tag-must'>MUST</span> 戦略コンサルティングファーム、または総合コンサルティングファームにおける事業戦略立案・新規事業開発支援のご経験</li><li><span class='tag tag-must'>MUST</span> メガベンチャーやスタートアップにおける新規事業の立ち上げ、または既存事業のグロースに携わったご経験</li><li><span class='tag tag-must'>MUST</span> 事業責任者やプロジェクトオーナーとして、複数ステークホルダーを巻き込みながら事業を推進したご経験</li><li><span class='tag tag-must'>MUST</span> マーケット調査・仮説検証・ビジネスモデル構築・収支設計等の上流工程から携わった実務経験</li></ul><p><strong>◆歓迎スキル</strong></p><ul><li><span class='tag tag-want'>WANT</span> 0→1フェーズでの事業立ち上げ経験、またはPMF達成までの実行経験</li><li><span class='tag tag-want'>WANT</span> 自社のリソースやアセットを活用したアライアンス／外部提携の推進経験</li><li><span class='tag tag-want'>WANT</span> SaaS、EC、プラットフォームビジネス、D2Cなどデジタル領域での事業開発経験</li><li><span class='tag tag-want'>WANT</span> 事業戦略と人材戦略（採用・組織設計・カルチャーづくり）を接続して描いた経験</li><li><span class='tag tag-want'>WANT</span> スタートアップやベンチャー企業でのCxO、事業責任者レベルでのリーダー経験</li><li><span class='tag tag-want'>WANT</span> 英語を含むグローバル環境での事業推進経験（海外展開、現地PMなど）</li></ul><p><strong>求める人物像：</strong></p><ul><li>EC市場の大きな転換点を創る意志がある方</li><li>マーケットの急成長を捉え、スピード感をもって戦略を推進できる方</li><li>ビジネス・テクノロジー・マーケティングを横断してリードできる方</li><li>既存のEC/広告/リテールモデルを超える、新しい収益モデルを生み出せる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://itsumo365.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">事業企画・BizDev・PMM</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社Hacobu</div>
+  <div class="co-url"><a href="https://hacobu.jp" target="_blank">https://hacobu.jp</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒108-0014 東京都港区芝5丁目29番11号 G-BASE田町4階</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>IPO状況</th><td>N-1,N-2,当面予定なし</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備中</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「運ぶを最適化する」をミッションに掲げ、物流業界の構造課題解決に挑む物流DXスタートアップ。企業間物流を最適化するクラウド物流管理ソリューション「MOVO」を中心に、物流DXコンサルティングやシステムインテグレーション、人材支援までを一気通貫で展開。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p><strong>株式会社Hacobu</strong><br>「運ぶを最適化する」をミッションに掲げ、物流業界の構造課題解決に挑む物流DXスタートアップ。企業間物流を最適化するクラウド物流管理ソリューション「MOVO」を中心に、物流DXコンサルティングやシステムインテグレーション、人材支援までを一気通貫で展開。主力サービス「MOVO Berth」は、バース管理システム市場で6年連続シェアNo.1を獲得し、全国3万7,000拠点超へ導入。国内主要物流拠点の約30％をカバーする業界標準インフラとして成長中です。</p><p>登録ドライバー数80万人超、月間トランザクション数300万件超という巨大な物流データ基盤を保有し、共同輸配送や積載効率向上など、業界横断での物流最適化を推進。累計資金調達額は56億円に到達し、物流危機という社会課題に対し、SaaS・データ・コンサルティングを融合した事業を展開。さらに、大和ハウス工業、日野自動車、三菱倉庫など大手企業との資本提携も推進し、物流業界全体を巻き込んだ変革を牽引する中核企業として成長を続けています。</p><p><strong>・代表取締役社長CEO　佐々木太郎氏</strong><br>慶應義塾大学法学部卒業後、UCLA MBA取得。アクセンチュア、博報堂コンサルティング、ブーズアンドカンパニーを経て、グロッシーボックスジャパンを創業し9ヶ月で単月黒字化を達成。その後、食のキュレーションEC「FRESCA」を創業。物流業界の現状を目の当たりにしたことで物流変革への強い使命感を抱き、2015年にHacobuを創業しました。3度の起業経験を持つシリアルアントレプレナーでありながら、4人の子どもを育てる父親として働き方改革にも熱心に取り組む、情熱と実行力を兼ね備えたリーダーです。</p><p>平均年齢36.5歳、社長も4人の子供がおり、子育てメンバーの多い大人ベンチャーです。組織はとてもフラットで、皆様下の名前やあだなで呼び合うとのこと・・物流DXスタートアップは複数ございますが、同社はマルチプロダクト戦略で複数プロダクトを有し、シェアを獲得している点が強みです。マネタイズは荷主・発注者向けとなるため、エンタープライズ向けセールスに舵を切って拡販を進めておられます。</p><p>hacobu Valueへの共感を大切に考えられているので、ご応募されるかの判断としてご一読いただけますと幸いです。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【オープンポジション／幹部候補】事業企画・BizDev・PMM（CPO室・新規事業等）</div>
+          <div class="job-preview">物流業界変革を牽引する企業での事業戦略立案・新規事業開発を担う幹部候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong><br>物流インフラの構造改革を牽引する当社は、主力事業であるSaaS「MOVO」シリーズが累計利用拠点数3.8万超、登録ドライバー数80万人を超える国内最大級の物流プラットフォームへと成長しました。各産業のトップ企業を先回りして押さえる「オセロの角戦略」や、複数プロダクトを展開して課題を網羅的に解決する「マルチプロダクト戦略」にて事業を発展させて参りました。</p><p>「2024年問題」や法改正により物流が社会アジェンダ化する中、SaaS単体では越えられない「商流と物流の接続」といった壁を打破するため、コンサルティングやシステムインテグレーション（SI）部門を立ち上げるなど、産業構造そのものを変革するフェーズに入っています。事業の複雑性がさらに増す中、経営陣・事業本部直下で、非連続な事業成長を実現するための戦略立案や新規事業の企画を牽引し、将来の経営幹部候補となる方を「オープンポジション」として幅広く募集します。</p><p><strong>募集ポジションと概要</strong></p><p><strong>CPO室（役員直下）</strong><br>CPOの右腕として、主力SaaS事業全体の事業戦略や中期経営計画の策定から実行までを牽引します。部門横断のハブとして立ち回り、事業ロードマップの策定、KPI設計、予実管理、セールスおよびマーケティング戦略の再構築といった、全社横断的な事業企画を担います。</p><p><strong>PMM（事業本部直下）</strong><br>経営陣の目標と連動した事業戦略・Go-to-Market戦略の立案をリードします。KPI設計や予実管理だけでなく、「何に投資すれば売上が作れるか」を見極め、人員や予算といったリソース配分まで踏み込んだ提案を行う、事業責任者に近いポジションです。</p><p><strong>BizOps（事業本部直下）</strong><br>AIとデータを駆使してデータドリブン経営を推進する戦略企画を担います。データ分析やTableauを用いたKPIの可視化を行い、経営会議や各部長陣と連携しながら、事業戦略に直結する意思決定の支援と業務プロセスの再構築を行います。</p><p><strong>新規事業開発（役員直下）</strong><br>当社の強固な顧客・データ基盤を武器に、P/L責任を見据えたゼロイチの事業創造・戦略設計を牽引します。市場調査や分析にとどまらず、収支・数値モデリング、ロードマップ作成など、高い抽象度の経営課題を具体的な事業計画へと落とし込みます。</p><p>面接の中で、ご経験やご志向に応じてふさわしい部署、役割を検討させていただき、ご経験によってはマネージャー候補としてジョインいただく可能性もございます。</p><p><strong>必須スキル</strong><br>以下いずれかのご経験をお持ちの方</p><ul><li><span class='tag tag-must'>MUST</span> 戦略コンサルティングファーム、または総合コンサルティングファームでの実務経験（3年以上目安）</li><li><span class='tag tag-must'>MUST</span> 事業会社での経営企画、事業企画、事業推進、またはCEO/CXO室での実務経験</li><li><span class='tag tag-must'>MUST</span> IT/SaaS企業での事業責任者、またはプロダクトマネージャー（PdM/PMM）としての経験</li><li><span class='tag tag-must'>MUST</span> もしくは上記職務内容に親和性の高い業務に携わったご経験</li></ul><p><strong>歓迎スキル</strong></p><ul><li><span class='tag tag-want'>WANT</span> 複数プロダクトの管掌経験、または新規事業の立ち上げ経験。</li><li><span class='tag tag-want'>WANT</span> 不確実性が高い状況下で、自ら仮説を立てて意思決定を行える方。</li></ul><p><strong>求める人物像：</strong></p><ul><li>HacobuのMission・Vision・Valueに共感できる方</li><li>手段の実行ではなく、目的（What/Why）から逆算して動ける方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://hacobu.jp" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k5"><div class="card-inner">
+  <div class="badges"><span class="badge">事業開発</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">ハコベル株式会社</div>
+  <div class="co-url"><a href="https://corp.hacobell.com/" target="_blank">https://corp.hacobell.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒104-0032 東京都中央区八丁堀2-14-1 住友不動産八重洲通ビル1・3F</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備中（上場スケジュールは口頭でお伝えいたします）</li><li>社長リレーション</li><li>過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">ハコベルは「物流の『次』を発明する」というMissionのもと、2015年に荷主とドライバーをつなぐマッチングサービスとして事業をスタートしました。ドライバーの非稼働時間を有効活用することで、低価格かつ「誰でも・早く・簡単に」配送できる仕組みを実現し、物流業界の課題解決に挑んできた企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>ハコベルは「物流の『次』を発明する」というMissionのもと、2015年に荷主とドライバーをつなぐマッチングサービスとして事業をスタートしました。ドライバーの非稼働時間を有効活用することで、低価格かつ「誰でも・早く・簡単に」配送できる仕組みを実現し、物流業界の課題解決に挑んできた企業です。</p><p>2019年からは、一般貨物向けのマッチングサービスに加え、配車管理システムの提供を開始。さらに近年はM&Aを通じて事業基盤を大きく拡張しています。</p><ul><li>2024年9月：モノフル社の「トラック簿」事業を承継（初のM&A）</li><li>2025年12月：Azoop社の「トラッカーズマネージャー」事業を吸収分割により承継</li></ul><p>車両・運行・労務管理、収益可視化までをカバーする機能を統合し、既存事業とのシナジーを最大化しています。</p><p>ハコベルはもともとラクスル株式会社の一事業として成長してきましたが、2022年8月にBtoB物流No.1のセイノーHDとラクスルのJVとして独立し、現在のハコベル株式会社が誕生しました。その後も、2023年10月には山九株式会社／福山通運株式会社／日本ロジテム株式会社を引受先とする第三者割当増資を実施。日本を代表する物流企業が株主として名を連ね、業界全体を巻き込んだ変革に本気で取り組む体制を築いています。</p><p><strong>代表取締役社長CEO 狭間 健志氏</strong><br>1985年生まれ。東京大学大学院農学生命科学研究科修士課程修了後、ベイン・アンド・カンパニーの東京オフィスに入社。多岐にわたる業界の日系・外資系クライアントを担当。2017年8月、ラクスル株式会社へ入社。執行役員ハコベル事業本部長として5年間職務に携わったのち、分社化に伴い2022年8月、現職に就任。</p><p>物流のプラットフォーマーに成るべく、小売向け物流マッチングを中心に展開しています。強みは法人物流トップであるセイノーホールディングスとの提携で培った法人間物流。取引先は大手消費財メーカーや商社が中心で、ドライバーの登録台数5万台、シェア6％を獲得されています。また、収益性を高めるためにSaaS事業として輸配送マッチングプラットフォーム、輸配送管理システムを開発し、既に数十社に導入が進んでいます。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 事業開発 / Bizdev</div>
+          <div class="job-preview">新設事業開発部にて、事業の立ち上げから推進まで主体的に担当する若手幹部候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>ハコベル全社における事業変革・事業推進をするべく、若手幹部候補を募集します。</p><p><strong>業務内容</strong></p><p>新たに創設された事業開発部にて、事業の立ち上げから推進までを主体的に担っていただくことを期待しています。立ち上げフェーズのため、職務内容は多岐にわたり、幅広い役割を担っていただくことを想定しています。事業開発部を管掌する執行役員と連携しながら、以下のような業務をご担当いただきます。</p><ul><li>新規事業のアイデア発案〜ビジネスモデルの構築</li><li>市場動向や顧客課題を踏まえた事業戦略の策定・実行</li><li>事業計画の策定、KPI設定、進捗管理</li><li>営業戦略の立案から、顧客開拓、商談、契約締結までの一連の営業活動</li><li>効率的なサービス提供のための業務フローやオペレーションの構築</li><li>上記に付随する他部門・社外パートナーとの連携</li></ul><p><strong>キャリアパス例</strong></p><p>成長中の組織であるため、実績次第で幅広いキャリアパスを描くことができます。</p><ul><li>リーダー/マネージャー/事業責任者等への昇格</li><li>IS/FS/PdM など他ロールへのシフト（適性・希望に応じて）</li></ul><p><strong>ポジションの魅力</strong></p><ul><li>若手から大きな裁量を持ち挑戦できる環境</li><li>変化を迎える物流領域において、先進性の高い技術の活用を視野に、企画力・営業力を高められるポジション</li><li>物流業界のネクストスタンダードを創っていく事業</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>以下いずれか2年以上のご経験<ul><li>ソリューション営業のご経験</li><li>営業企画のご経験</li><li>事業開発のご経験</li><li>プロダクトマネジメントのご経験</li><li>コンサルティング（IT・業務・戦略）のご経験</li></ul></li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>事業立ち上げのご経験</li><li>スタートアップで1事業にコミットし立ち上げ・グロースをさせたご経験</li></ul><p><strong>求める人物像</strong></p><ul><li>当社のミッションに共感をいただける方</li><li>圧倒的な解像度をもとにしたリアリティのある課題設定や戦略実行ができる方</li><li>業界の常識を変えることを厭わず、社会に大きな影響を与えられる仕事がしたい方</li><li>スピード感ある環境で、常識にとらわれず新しい取り組みに果敢にチャレンジしたい方</li><li>自らオーナーシップを持ち、周囲を巻き込みながら実行に移せる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.hacobell.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/hacobellrecruiting/hakoberuzhu-shi-hui-she-recruit-book" target="_blank">📖 RECRUIT BOOK</a><a class="lbtn lbtn-out" href="https://newspicks.com/news/9433071" target="_blank">📰 NewsPicksタイアップ記事</a><a class="lbtn lbtn-out" href="https://note.com/hacobell/m/mee1111c9f9cf" target="_blank">📝 社員インタビュー</a></div>
+</div></div>
+
+<div class="card" id="k6"><div class="card-inner">
+  <div class="badges"><span class="badge">子会社代表</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社ACROVE</div>
+  <div class="co-url"><a href="https://acrove.co.jp/" target="_blank">https://acrove.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒160-0023 東京都新宿区西新宿6丁目18-1 新宿セントラルパークタワー19階</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    子会社代表候補
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「社会の果樹園を創造する。」をミッションに、一つでも多くの素敵な事業・モノ・想いを次代に紡ぐために、販売支援とM&Aの2事業を展開しています。（2018年11月15日に株式会社アノマとして創業し、2020年10月に現商号へ変更）</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「社会の果樹園を創造する。」をミッションに、一つでも多くの素敵な事業・モノ・想いを次代に紡ぐために、販売支援とM&Aの2事業を展開しています。（2018年11月15日に株式会社アノマとして創業し、2020年10月に現商号へ変更）</p><p>データと人材を駆使し、EC事業者様や譲受ブランドの売上最大化を実現しています。主要事業として、EC販売支援とECロールアップ事業を強化しており、「EC3.0」の構築を目指しています。特に、EC利用者の増加に着目し、ECプラットフォーム事業から2022年にはECロールアップ事業へと拡大しました。現在、約170社以上のお客様を支援しており、プロテイン、ベビー＆キッズ用品、家電、アウトドア用品、美容家電、カーパーツなど10を超える幅広い自社ブランドと11社のグループ会社を運営しています。</p><p>同社の「CX事業」と「ECロールアップ事業」は、事業承継や中小企業の生産性向上を目的としたビジネスモデルとして、日本経済が抱える社会課題の解決に貢献しうると期待されています。自社のECデータ分析プラットフォーム「ACROVE FORCE」の機能拡充も進めています。</p><p>2024年9月12日には、シリーズCラウンドで総額約20億円の資金調達を実施しました。これにより、累計調達額は約38億円に達しています。</p><p>Forbes 30 Under 30 Asia 2024、Forbes JAPAN 30 UNDER 30 2024に代表取締役 / 社長執行役員 CEO 荒井俊亮が選出、日経クロストレンド「未来の市場をつくる100社【2025年版】」にACROVEが選出。</p><p><strong>代表取締役CEO 荒井俊亮氏</strong><br>1996年神奈川県生まれ。2018年11月、日本大学法学部在学中にACROVEの前身となる株式会社アノマを設立し、植物性プロテインをはじめとした自社ECブランド事業を展開。2020年、コロナ禍を機に事業拡大を決意し、株式会社ACROVEに社名変更。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 子会社代表</div>
+          <div class="job-preview">COO直下で買収した子会社の代表取締役を担当</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>業務内容</strong></p><p>当社はECプラットフォームカンパニーとして、メーカー様のEC売上最大化のためのサービスの開発や提供をするCX事業と、事業承継等の経営課題を抱えられているメーカー様をM&Aを通じて譲受け、当社の持つECノウハウを元にバリューアップを果していくECロールアップ事業の2つをメイン事業として展開しています。</p><p>CX事業においては、サービス開始から3年半で約200社のお客様にご利用いただいており、ARRも約10億円に迫っていることや、ECロールアップ事業においても事業立ち上げから約2年で16件のM&Aを実行するなど、極めて高いスピードでの成長を遂げています。</p><p><strong>ポジションについて</strong></p><ul><li>COO直下で、買収した子会社の代表取締役をお任せいたします。</li></ul><p><strong>主な業務内容</strong></p><ul><li>子会社の戦略策定</li><li>各種マーケティング施策の立案・実行とモニタリング業務</li><li>グループジョインした子会社のPMI</li><li>組織づくり及びチームマネジメント</li></ul><p><strong>仕事の魅力</strong></p><ul><li>急成長を遂げている会社において、経営陣とダイレクトに接しながら事業責任者として事業成長を支えていく経験</li><li>企業に属しながら、1つの会社の経営経験が積める</li><li>若くエネルギッシュで明るいメンバーが集まっている職場</li><li>大きな裁量権を持ち幅広い領域を横断してチャレンジできる</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>スタートアップで高い目標に向けてチャレンジしていくマインドセットをお持ちの方</li><li>当社のミッション・ビジョンへの共感、事業内容に興味をお持ちの方</li><li>コンサルティングファーム、または事業会社の企画部門において、自ら主体的にプロジェクトをリードし、事業推進や課題解決をリードなさってきた経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏢 基本出社</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://acrove.co.jp/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/acrove/acrove-recruiting-deck-2208" target="_blank">📖 会社資料</a><a class="lbtn lbtn-out" href="https://note.com/acrovehr/" target="_blank">📝 note</a><a class="lbtn lbtn-out" href="https://prtimes.jp/main/html/searchrlp/company_id/40239" target="_blank">📰 プレスリリース</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが杉原正隆 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
